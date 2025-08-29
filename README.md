@@ -47,9 +47,12 @@ Use "liqiu [command] --help" for more information about a command.
 需要自行配置安装observerward和nuclei的路径到终端环境变量。
 需要自行配置fofa和quake的api key到config.yaml文件中。
 ```
-fofa: ["<fofa api key>"]
-quake: ["<quake api key>"]
+fofa: ["fofa api key"]
+quake: ["quake api key"]
 ```
+
+**httpx配置**:
+- 参考文档: [Ubuntu20.04安装chrome和chromedriver](https://blog.csdn.net/weixin_44184990/article/details/123590435)
 
 **Observer Ward配置**:
 - 参考文档: [Observer Ward集成nuclei验证漏洞](https://github.com/emo-crab/observer_ward?tab=readme-ov-file#%E9%9B%86%E6%88%90nuclei%E9%AA%8C%E8%AF%81%E6%BC%8F%E6%B4%9E)
@@ -63,12 +66,12 @@ quake: ["<quake api key>"]
 
 **默认端口扫描**（使用red2scan系列端口）:
 ```bash
-./liqiu scan -i example/targets.txt --httpx -f 文件名
+./liqiu scan -i example/targets.txt --httpx --obclei -f 文件名
 ```
 
 **指定端口扫描**:
 ```bash
-./liqiu scan -i example/targets.txt -p 80,443,8080 --httpx -f 文件名
+./liqiu scan -i example/targets.txt -p 80,443,8080 --httpx --obclei -f 文件名
 ```
 
 > **注意**: 不指定端口时，默认扫描red2scan系列端口（包含常见的Web端口、数据库端口、服务端口等）
@@ -91,7 +94,7 @@ Flags:
       --httpx                      启用httpx web扫描
       --httpx-threads int          httpx并发线程数 (default 50)
   -i, --input string               被扫描的目标,包括各种格式的目标输入
-      --nopoc                      禁用observerward指纹识别和nuclei漏洞扫描
+      --obclei                     启用observerward指纹识别和nuclei漏洞扫描
       --observerward-threads int   observerward并发线程数 (default 10)
   -p, --port string                扫描端口,支持单个端口、端口范围、逗号分隔等格式,如: 80,443,8000-8100
   -x, --proxy strings              socks5代理, e.g. socks5://127.0.0.1:11111
@@ -165,6 +168,3 @@ Flags:
 - [observer_ward](https://github.com/emo-crab/observer_ward) - Web指纹识别
 - [nuclei](https://github.com/projectdiscovery/nuclei) - 漏洞扫描引擎
 - [快速打点](https://ruoji6.github.io/posts/24712.html) - 快速打点思考
-## 许可证
-
-本项目采用开源许可证，详见 [LICENSE](LICENSE) 文件。
